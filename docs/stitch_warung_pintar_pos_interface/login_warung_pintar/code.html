@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - Warung Pintar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#005d42",
+                        "surface-tint": "#006c4e",
+                        "tertiary-fixed-dim": "#ffb4ac",
+                        "text-base": "#0F172A",
+                        "on-error-container": "#93000a",
+                        "text-muted": "#475569",
+                        "surface-white": "#FFFFFF",
+                        "surface-container": "#ebefea",
+                        "tertiary-container": "#a45049",
+                        "on-primary-fixed": "#002115",
+                        "on-surface": "#181d1a",
+                        "surface-container-low": "#f0f5f0",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#370e00",
+                        "background": "#f6fbf5",
+                        "inverse-surface": "#2c322e",
+                        "inverse-primary": "#7bd8b1",
+                        "on-primary-container": "#9ffdd3",
+                        "secondary-fixed": "#ffdbce",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#792f2a",
+                        "outline-variant": "#bdc9c1",
+                        "on-surface-variant": "#3e4943",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#97f5cc",
+                        "secondary": "#a73a00",
+                        "inverse-on-surface": "#edf2ed",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#047857",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#6e7a73",
+                        "bg-main": "#F0FDFA",
+                        "surface": "#f6fbf5",
+                        "on-background": "#181d1a",
+                        "tertiary": "#863933",
+                        "tertiary-fixed": "#ffdad6",
+                        "primary-fixed-dim": "#7bd8b1",
+                        "on-secondary-container": "#571a00",
+                        "surface-container-high": "#e5e9e4",
+                        "secondary-container": "#fd651e",
+                        "surface-bright": "#f6fbf5",
+                        "surface-dim": "#d7dbd6",
+                        "on-tertiary-fixed": "#3e0405",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#00513a",
+                        "secondary-fixed-dim": "#ffb599",
+                        "alert-red": "#DC2626",
+                        "border-light": "#E2E8F0",
+                        "on-tertiary-container": "#ffe4e0",
+                        "on-secondary-fixed-variant": "#7f2b00",
+                        "surface-container-highest": "#dfe4df",
+                        "surface-variant": "#dfe4df"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "24px",
+                        "touch-target-min": "60px",
+                        "touch-target-huge": "72px",
+                        "gap-standard": "16px",
+                        "gap-wide": "24px"
+                    },
+                    "fontFamily": {
+                        "display-total": ["Plus Jakarta Sans"],
+                        "product-name": ["Plus Jakarta Sans"],
+                        "price-tag": ["Plus Jakarta Sans"],
+                        "body-large": ["Plus Jakarta Sans"],
+                        "h1-store": ["Plus Jakarta Sans"],
+                        "badge-small": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-total": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "product-name": ["20px", { "lineHeight": "1.4", "fontWeight": "700" }],
+                        "price-tag": ["22px", { "lineHeight": "1.2", "fontWeight": "800" }],
+                        "body-large": ["18px", { "lineHeight": "1.5", "fontWeight": "500" }],
+                        "h1-store": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "badge-small": ["16px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center p-margin-page">
+<main class="w-full max-w-md bg-surface-white rounded-xl shadow-lg border border-border-light overflow-hidden">
+<!-- Error Banner -->
+<div class="bg-alert-red text-surface-white p-4 flex items-center justify-center gap-2 font-body-large text-body-large">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">error</span>
+<span>Email atau Password Salah</span>
+</div>
+<div class="p-gap-wide space-y-gap-wide">
+<!-- Header -->
+<div class="text-center">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-container text-on-primary mb-4">
+<span class="material-symbols-outlined text-4xl" data-icon="storefront">storefront</span>
+</div>
+<h1 class="font-h1-store text-h1-store text-on-background">Masuk ke Warung Pintar</h1>
+</div>
+<!-- Form -->
+<form class="space-y-gap-standard">
+<div class="space-y-2">
+<label class="font-body-large text-body-large text-on-surface" for="email">Email / Nomor HP</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+</span>
+<input class="w-full h-touch-target-min pl-12 pr-4 rounded-lg border-2 border-outline-variant bg-surface focus:border-primary-container focus:ring-0 font-product-name text-product-name text-on-surface placeholder:text-on-surface-variant transition-colors" id="email" placeholder="Contoh: 08123456789" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-body-large text-body-large text-on-surface" for="password">Password</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-4 text-on-surface-variant">
+<span class="material-symbols-outlined">lock</span>
+</span>
+<input class="w-full h-touch-target-min pl-12 pr-4 rounded-lg border-2 border-outline-variant bg-surface focus:border-primary-container focus:ring-0 font-product-name text-product-name text-on-surface placeholder:text-on-surface-variant transition-colors" id="password" placeholder="Masukkan password" type="password"/>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full h-touch-target-huge bg-primary-container text-on-primary font-display-total text-display-total rounded-lg shadow-md hover:bg-surface-tint active:scale-95 transition-all duration-200 mt-gap-wide flex items-center justify-center gap-2" type="button">
+                    MASUK
+                    <span class="material-symbols-outlined text-3xl">login</span>
+</button>
+</form>
+</div>
+</main>
+</body></html>

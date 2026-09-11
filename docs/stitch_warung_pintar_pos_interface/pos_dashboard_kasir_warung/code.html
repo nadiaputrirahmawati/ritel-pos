@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>POS Warung Pintar - Kasir</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#7bd8b1",
+                        "on-surface-variant": "#3e4943",
+                        "surface-container-highest": "#dfe4df",
+                        "secondary-fixed-dim": "#ffb599",
+                        "surface-container": "#ebefea",
+                        "surface": "#f6fbf5",
+                        "secondary-container": "#fd651e",
+                        "on-surface": "#181d1a",
+                        "bg-main": "#F0FDFA",
+                        "on-primary-fixed": "#002115",
+                        "text-muted": "#475569",
+                        "on-secondary-container": "#571a00",
+                        "surface-variant": "#dfe4df",
+                        "tertiary-container": "#a45049",
+                        "primary": "#005d42",
+                        "text-base": "#0F172A",
+                        "primary-fixed-dim": "#7bd8b1",
+                        "primary-fixed": "#97f5cc",
+                        "on-tertiary-container": "#ffe4e0",
+                        "tertiary": "#863933",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e5e9e4",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#edf2ed",
+                        "inverse-surface": "#2c322e",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-white": "#FFFFFF",
+                        "primary-container": "#047857",
+                        "on-secondary-fixed-variant": "#7f2b00",
+                        "tertiary-fixed-dim": "#ffb4ac",
+                        "on-tertiary-fixed": "#3e0405",
+                        "surface-container-low": "#f0f5f0",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-background": "#181d1a",
+                        "tertiary-fixed": "#ffdad6",
+                        "outline": "#6e7a73",
+                        "on-primary-container": "#9ffdd3",
+                        "outline-variant": "#bdc9c1",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#370e00",
+                        "on-tertiary-fixed-variant": "#792f2a",
+                        "surface-tint": "#006c4e",
+                        "surface-bright": "#f6fbf5",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d7dbd6",
+                        "on-error": "#ffffff",
+                        "background": "#f6fbf5",
+                        "alert-red": "#DC2626",
+                        "secondary": "#a73a00",
+                        "border-light": "#E2E8F0",
+                        "on-primary-fixed-variant": "#00513a",
+                        "secondary-fixed": "#ffdbce"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target-min": "60px",
+                        "margin-page": "24px",
+                        "touch-target-huge": "72px",
+                        "gap-standard": "16px",
+                        "gap-wide": "24px"
+                    },
+                    "fontFamily": {
+                        "badge-small": ["Plus Jakarta Sans"],
+                        "body-large": ["Plus Jakarta Sans"],
+                        "h1-store": ["Plus Jakarta Sans"],
+                        "price-tag": ["Plus Jakarta Sans"],
+                        "product-name": ["Plus Jakarta Sans"],
+                        "display-total": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "badge-small": ["16px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-large": ["18px", { "lineHeight": "1.5", "fontWeight": "500" }],
+                        "h1-store": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "price-tag": ["22px", { "lineHeight": "1.2", "fontWeight": "800" }],
+                        "product-name": ["20px", { "lineHeight": "1.4", "fontWeight": "700" }],
+                        "display-total": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 48;
+        }
+        body { padding-top: 80px; padding-bottom: 140px; } /* Space for fixed headers/footers */
+    </style>
+</head>
+<body class="bg-surface font-body-large text-body-large text-on-surface">
+<!-- TopAppBar JSON Component -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-page h-touch-target-min bg-surface dark:bg-inverse-surface shadow-sm border-b border-surface-container-high">
+<div class="flex items-center gap-gap-standard">
+<span class="material-symbols-outlined text-primary dark:text-inverse-primary text-[32px]">storefront</span>
+<h1 class="font-h1-store text-h1-store text-primary dark:text-inverse-primary font-bold tracking-tight">Warung Pintar</h1>
+</div>
+<button class="flex items-center justify-center w-touch-target-min h-touch-target-min text-error hover:bg-error-container rounded-full transition-transform active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[28px]">logout</span>
+</button>
+</header>
+<main class="px-margin-page max-w-7xl mx-auto flex flex-col gap-gap-wide pt-gap-wide">
+<!-- Search & Scan Area -->
+<section class="flex gap-gap-standard h-[64px]">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-[28px]">search</span>
+<input class="w-full h-full pl-[56px] pr-4 rounded-xl border-2 border-border-light bg-surface-container-lowest focus:border-primary focus:ring-0 text-body-large font-bold shadow-sm transition-colors" placeholder="Cari Produk..." type="text"/>
+</div>
+<button class="w-[64px] h-[64px] bg-primary text-on-primary rounded-xl flex items-center justify-center shadow-sm hover:bg-surface-tint active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-[32px]">barcode_scanner</span>
+</button>
+</section>
+<!-- Categories -->
+<section class="flex overflow-x-auto gap-gap-standard pb-2 hide-scrollbar">
+<button class="min-w-fit px-6 h-touch-target-min rounded-full bg-primary-container text-on-primary-container font-badge-small text-badge-small shadow-sm active:scale-95 transition-transform">Semua</button>
+<button class="min-w-fit px-6 h-touch-target-min rounded-full bg-surface-container-high text-on-surface font-badge-small text-badge-small shadow-sm hover:bg-surface-container-highest active:scale-95 transition-transform">Beras</button>
+<button class="min-w-fit px-6 h-touch-target-min rounded-full bg-surface-container-high text-on-surface font-badge-small text-badge-small shadow-sm hover:bg-surface-container-highest active:scale-95 transition-transform">Minuman</button>
+<button class="min-w-fit px-6 h-touch-target-min rounded-full bg-surface-container-high text-on-surface font-badge-small text-badge-small shadow-sm hover:bg-surface-container-highest active:scale-95 transition-transform">Sembako</button>
+<button class="min-w-fit px-6 h-touch-target-min rounded-full bg-surface-container-high text-on-surface font-badge-small text-badge-small shadow-sm hover:bg-surface-container-highest active:scale-95 transition-transform">Rokok</button>
+</section>
+<!-- Product Grid -->
+<section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-gap-standard pb-8">
+<!-- Product Card 1 -->
+<article class="bg-surface-container-lowest border border-border-light rounded-xl overflow-hidden shadow-sm flex flex-col active:scale-[0.98] transition-transform cursor-pointer">
+<div class="h-40 bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A clean, highly visible product photograph of a standard sack of white rice on a neutral background. The lighting is bright and even, casting soft shadows, ensuring the product label is clearly readable in a retail point-of-sale context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADKOPr4MIcn48gPNRfe6PyIPfkSrsP2Et8cZuJqs1OJNxzzqeLU9y3M8xnO9rbrWq5e8I-dUlhDM3leRToU8rcJ2VfB--UEtzasjYpEgs01pu4oRwS3lTKA8w-sCZMZtqVOWixd3gQxYsSDo98dahMBv8_M0oCYdhErA-sBDakbw3XuKhKfSDoPK2Q_3iPM1qVr0BkwgZIGyTKuHAcbJQbNDsqSwMdEPQBkdEosM29hCil31q8aNzo"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest px-3 py-1 rounded-full font-badge-small text-badge-small text-primary border border-primary">
+                        Sisa: 12
+                    </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1 justify-between">
+<h3 class="font-product-name text-product-name text-on-surface line-clamp-2">Beras Maknyus 5Kg</h3>
+<p class="font-price-tag text-price-tag text-primary-container">Rp 65.000</p>
+</div>
+</article>
+<!-- Product Card 2 -->
+<article class="bg-surface-container-lowest border border-border-light rounded-xl overflow-hidden shadow-sm flex flex-col active:scale-[0.98] transition-transform cursor-pointer">
+<div class="h-40 bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A clear, bright studio shot of a red and white branded instant noodle packet. The lighting highlights the vibrant colors of the packaging, making it instantly recognizable against a solid, light grey background suitable for a cash register interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCev-HBibJGycPKxGeIeuZHj75r0uNg9_QIZCBUwy_hhoWzoPOqMJMb3gmehPi28swT7CwIFPlPi2CeNcG_VFI65L5-cD_lkIV7GbStu3WCzF-ivsu1ZLM5lR_vcCZq4vVeqMi2AINrhu0exoMuPMWefy5D3zv0gYe9dpVdU523p7G4x2AJQw8dSdZA9bgLX18kHJkdoN5PeIg0YGLkILt6x4QEDLO-bd9d7nPPR5cuYCCyE5YMm-zb"/>
+<div class="absolute top-2 right-2 bg-alert-red px-3 py-1 rounded-full font-badge-small text-badge-small text-surface-white border border-alert-red shadow-sm">
+                        Sisa: 3
+                    </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1 justify-between">
+<h3 class="font-product-name text-product-name text-on-surface line-clamp-2">Indomie Goreng Original</h3>
+<p class="font-price-tag text-price-tag text-primary-container">Rp 3.000</p>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="bg-surface-container-lowest border border-border-light rounded-xl overflow-hidden shadow-sm flex flex-col active:scale-[0.98] transition-transform cursor-pointer">
+<div class="h-40 bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A crisp, well-lit photograph of a large, generic bottle of cooking oil with a yellow cap and label. The background is pure white, emphasizing the golden color of the oil inside. The style is utilitarian and highly legible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4kT1pNSz-lnJb1e-s4Ez230EYvAh_GzC4Ijko_tucB4zpEUdNHwtv1MfVZC-jy9gKVYB77XrwYtmTND8I3MgStDQ-zVlnEfbh0DJ83P6mw0-hPfj0k4XJx55eMG-9jIpQhRpkrzL1aUeEb5w1Jq2RdFU_qpBScEI5qfIkxCATkuQ4obtTM48hi8Rvj_l8mYguV2xAXwR1PBd-NrOuErY9WHixHoBhKE_wP9g-lj-yea85IrD6G7ic"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest px-3 py-1 rounded-full font-badge-small text-badge-small text-primary border border-primary">
+                        Sisa: 24
+                    </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1 justify-between">
+<h3 class="font-product-name text-product-name text-on-surface line-clamp-2">Minyak Goreng Bimoli 2L</h3>
+<p class="font-price-tag text-price-tag text-primary-container">Rp 38.000</p>
+</div>
+</article>
+<!-- Product Card 4 -->
+<article class="bg-surface-container-lowest border border-border-light rounded-xl overflow-hidden shadow-sm flex flex-col active:scale-[0.98] transition-transform cursor-pointer">
+<div class="h-40 bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A detailed, brightly lit macro shot of a single brown chicken egg sitting beside a generic clear plastic bag filled with white sugar. The setting is sterile and commercial, prioritizing object identification over artistic composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUXX76NuAvDVHmjTQiR54FWBGwwIDWV8p3NredaILkjzrr7-WR7yJzeokfBhEXS8gZ1hk8pBfJ_BCcqbfRiX6HbgXJVyncIaqRshCQO8vhmHnP6TzG0kC5NBE3A0rXyqPPMf8sCktXrjnlYhc5nheiCY6gWkV74RgFSNrOoH5kQ4nf-uV7axUmGJvQNoKfQle8krs1egwsy95XDSw5SwsR5tJMwRIFhtgtha37HA6QFOZXgasmxLdN"/>
+<div class="absolute top-2 right-2 bg-surface-container-lowest px-3 py-1 rounded-full font-badge-small text-badge-small text-primary border border-primary">
+                        Sisa: 50
+                    </div>
+</div>
+<div class="p-4 flex flex-col gap-2 flex-1 justify-between">
+<h3 class="font-product-name text-product-name text-on-surface line-clamp-2">Gula Pasir Lokal 1Kg</h3>
+<p class="font-price-tag text-price-tag text-primary-container">Rp 16.000</p>
+</div>
+</article>
+</section>
+</main>
+<!-- Sticky Bottom Sheet (Cart Summary) -->
+<div class="fixed bottom-[80px] md:bottom-0 w-full bg-surface-container-lowest shadow-[0_-4px_12px_rgba(0,0,0,0.1)] rounded-t-2xl z-40 border-t border-border-light p-margin-page flex flex-col md:flex-row md:items-center justify-between gap-gap-standard">
+<div class="flex flex-col">
+<span class="font-body-large text-body-large text-on-surface-variant">Total Tagihan (3 Item)</span>
+<span class="font-display-total text-display-total text-primary-container tracking-tight">Rp 85.000</span>
+</div>
+<button class="w-full md:w-auto h-[64px] px-8 bg-secondary-container text-on-secondary-container rounded-xl font-h1-store text-h1-store shadow-lg active:scale-95 transition-transform duration-200 flex items-center justify-center gap-2 border-2 border-secondary">
+            BAYAR
+            <span class="material-symbols-outlined text-[28px]">payments</span>
+</button>
+</div>
+<!-- BottomNavBar JSON Component (Visible only on mobile md:hidden) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pb-2 pt-2 bg-surface-container-lowest dark:bg-inverse-surface border-t border-border-light dark:border-outline-variant shadow-lg rounded-t-xl md:hidden">
+<button class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-xl px-4 py-2 hover:bg-surface-container-high dark:hover:bg-on-surface-variant active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[28px]">receipt_long</span>
+<span class="font-badge-small text-badge-small mt-1">Transaksi</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-on-surface-variant active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[28px]">inventory_2</span>
+<span class="font-badge-small text-badge-small mt-1">Produk</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-on-surface-variant active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[28px]">history</span>
+<span class="font-badge-small text-badge-small mt-1">Riwayat</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant px-4 py-2 hover:bg-surface-container-high dark:hover:bg-on-surface-variant active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[28px]">person</span>
+<span class="font-badge-small text-badge-small mt-1">Akun</span>
+</button>
+</nav>
+<style>
+        /* Utilities */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

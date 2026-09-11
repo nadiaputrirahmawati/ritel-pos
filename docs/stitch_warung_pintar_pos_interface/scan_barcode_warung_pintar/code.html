@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Warung Pintar - Scanner</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#005d42",
+                        "surface-tint": "#006c4e",
+                        "tertiary-fixed-dim": "#ffb4ac",
+                        "text-base": "#0F172A",
+                        "on-error-container": "#93000a",
+                        "text-muted": "#475569",
+                        "surface-white": "#FFFFFF",
+                        "surface-container": "#ebefea",
+                        "tertiary-container": "#a45049",
+                        "on-primary-fixed": "#002115",
+                        "on-surface": "#181d1a",
+                        "surface-container-low": "#f0f5f0",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#370e00",
+                        "background": "#f6fbf5",
+                        "inverse-surface": "#2c322e",
+                        "inverse-primary": "#7bd8b1",
+                        "on-primary-container": "#9ffdd3",
+                        "secondary-fixed": "#ffdbce",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#792f2a",
+                        "outline-variant": "#bdc9c1",
+                        "on-surface-variant": "#3e4943",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#97f5cc",
+                        "secondary": "#a73a00",
+                        "inverse-on-surface": "#edf2ed",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#047857",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#6e7a73",
+                        "bg-main": "#F0FDFA",
+                        "surface": "#f6fbf5",
+                        "on-background": "#181d1a",
+                        "tertiary": "#863933",
+                        "tertiary-fixed": "#ffdad6",
+                        "primary-fixed-dim": "#7bd8b1",
+                        "on-secondary-container": "#571a00",
+                        "surface-container-high": "#e5e9e4",
+                        "secondary-container": "#fd651e",
+                        "surface-bright": "#f6fbf5",
+                        "surface-dim": "#d7dbd6",
+                        "on-tertiary-fixed": "#3e0405",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#00513a",
+                        "secondary-fixed-dim": "#ffb599",
+                        "alert-red": "#DC2626",
+                        "border-light": "#E2E8F0",
+                        "on-tertiary-container": "#ffe4e0",
+                        "on-secondary-fixed-variant": "#7f2b00",
+                        "surface-container-highest": "#dfe4df",
+                        "surface-variant": "#dfe4df"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "24px",
+                        "touch-target-min": "60px",
+                        "touch-target-huge": "72px",
+                        "gap-standard": "16px",
+                        "gap-wide": "24px"
+                    },
+                    "fontFamily": {
+                        "display-total": ["Plus Jakarta Sans"],
+                        "product-name": ["Plus Jakarta Sans"],
+                        "price-tag": ["Plus Jakarta Sans"],
+                        "body-large": ["Plus Jakarta Sans"],
+                        "h1-store": ["Plus Jakarta Sans"],
+                        "badge-small": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-total": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "product-name": ["20px", { "lineHeight": "1.4", "fontWeight": "700" }],
+                        "price-tag": ["22px", { "lineHeight": "1.2", "fontWeight": "800" }],
+                        "body-large": ["18px", { "lineHeight": "1.5", "fontWeight": "500" }],
+                        "h1-store": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "badge-small": ["16px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .scan-line {
+            animation: scan 2s linear infinite;
+        }
+        @keyframes scan {
+            0% { top: 10%; }
+            50% { top: 90%; }
+            100% { top: 10%; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen w-screen overflow-hidden flex flex-col relative font-body-large">
+<!-- Top App Bar - Minimal for Scanner Context -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-h1-store text-h1-store w-full top-0 sticky shadow-md flex items-center justify-between px-margin-page h-touch-target-min z-20 absolute top-0 left-0">
+<div class="flex items-center gap-gap-standard">
+<span class="material-symbols-outlined font-h1-store text-h1-store text-on-primary" data-icon="storefront" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<h1 class="font-bold">Warung Pintar</h1>
+</div>
+</header>
+<!-- Camera Viewfinder Layer -->
+<main class="flex-1 relative bg-black flex flex-col items-center justify-center">
+<!-- Simulated Camera Feed Background -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="A slightly blurred top-down view of various colorful packaged snacks and drinks sitting on a wooden counter inside a small Indonesian warung, viewed through a digital camera lens. The lighting is warm and natural, emphasizing the tactile textures of the packaging. The scene feels realistic and busy but in soft focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD03Y9smRqnAtfHtu6FcZZEh1VBYhKVyttir7Z5XETbHfGsVClZBOoKN-MhHTnLTmrvtZQ11z4K_lb3rgK2ZU699Qa8jpPZcNm9rj4GrtV8_6Cxg0vDbAb0bBZ2zt0VMZOwPLnJTioW1tYsbJwfVf_8b6c5G6Sjoc2TPIF3q7asK8EPcXLkgma_jGc3okbNGE3fT7HKqZFXuJNkiKGqKL0-DpsGkYdfKlsaKXv3lmggpWc5XGn55OxS"/>
+</div>
+<!-- Scanning Reticle Area -->
+<div class="relative z-10 flex flex-col items-center justify-center w-full max-w-sm px-margin-page">
+<!-- Searching Spinner Overlay -->
+<div class="mb-gap-wide flex flex-col items-center">
+<svg class="animate-spin -ml-1 mr-3 h-12 w-12 text-primary-fixed mb-4" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+<span class="font-h1-store text-h1-store text-surface-white font-bold drop-shadow-lg">Mencari Produk...</span>
+</div>
+<!-- Target Square -->
+<div class="w-64 h-64 border-4 border-primary-fixed rounded-xl relative shadow-[0_0_0_4000px_rgba(0,0,0,0.5)] overflow-hidden flex items-center justify-center">
+<!-- Scanning Line Animation -->
+<div class="absolute left-0 right-0 h-1 bg-alert-red scan-line shadow-[0_0_8px_rgba(220,38,38,0.8)]"></div>
+<!-- Corner Accents -->
+<div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-primary-fixed -mt-1 -ml-1"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-primary-fixed -mt-1 -mr-1"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-primary-fixed -mb-1 -ml-1"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-primary-fixed -mb-1 -mr-1"></div>
+</div>
+<p class="mt-gap-standard font-body-large text-body-large text-surface-white text-center drop-shadow-md">Arahkan kamera ke barcode produk</p>
+</div>
+</main>
+<!-- Bottom Controls Area -->
+<footer class="bg-surface-container w-full pb-8 pt-4 px-margin-page z-20 flex flex-col gap-gap-wide rounded-t-3xl shadow-[0_-8px_16px_-4px_rgba(0,0,0,0.2)] absolute bottom-0 left-0">
+<!-- Error Toast (High Contrast Red) -->
+<div class="w-full bg-alert-red rounded-xl p-4 flex items-center justify-between shadow-lg transform -translate-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-surface-white" data-icon="error" style="font-variation-settings: 'FILL' 1;">error</span>
+<span class="font-product-name text-product-name text-surface-white">Barcode tidak ditemukan</span>
+</div>
+</div>
+<!-- Massive Cancel Button -->
+<button class="w-full h-touch-target-huge bg-secondary-container text-on-secondary-container font-h1-store text-h1-store rounded-xl shadow-md active:scale-95 transition-transform duration-100 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined font-bold" data-icon="close">close</span>
+            BATAL
+        </button>
+</footer>
+</body></html>
