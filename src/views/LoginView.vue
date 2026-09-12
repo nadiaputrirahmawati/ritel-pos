@@ -23,7 +23,7 @@ async function handleLogin(): Promise<void> {
   errorMessage.value = null;
 
   try {
-    const res = await api.post<LoginResponse>('/api/auth/login', {
+    const res = await api.post<LoginResponse>('/auth/login', {
       email: email.value,
       password: password.value,
     });
